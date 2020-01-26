@@ -45,7 +45,7 @@ class Router:
         """
         self.routes[self.pattern(route.path)] = route
 
-    def get_route(
+    async def get_route(
         self, path
     ) -> typing.Tuple[typing.Dict[str, str], typing.Optional[Route]]:
         # FIXME: simplification for getting index page route
@@ -55,9 +55,9 @@ class Router:
                     return {}, self.routes.get(route_pattern)
 
         for route_pattern in self.routes:
-            if self.patcher.check(path, route_pattern):
+            if await self.patcher.check_async(path, route_pattern):
                 return (
-                    self.patcher.check(path, route_pattern),
+                    await self.patcher.check_async(path, route_pattern),
                     self.routes.get(route_pattern),
                 )
             if path == route_pattern.text:

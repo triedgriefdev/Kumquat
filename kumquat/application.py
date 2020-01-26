@@ -11,6 +11,7 @@ from kumquat.request import Request
 
 logger = logging.getLogger(__name__)
 
+
 class Kumquat:
     """
     kumquat web application
@@ -35,7 +36,7 @@ class Kumquat:
     async def __call__(self, scope, receive, send) -> None:
         request = Request(scope)
         response = SimpleResponse(b"")
-        path_dict, current_route = self.router.get_route(request.path)
+        path_dict, current_route = await self.router.get_route(request.path)
         request.path_dict = path_dict
 
         response: SimpleResponse = await self._prepare_response(
