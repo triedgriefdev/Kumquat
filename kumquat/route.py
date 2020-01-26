@@ -55,9 +55,9 @@ class Router:
                     return {}, self.routes.get(route_pattern)
 
         for route_pattern in self.routes:
-            if await self.patcher.check_async(path, route_pattern):
+            if self.patcher.check(path, route_pattern):
                 return (
-                    await self.patcher.check_async(path, route_pattern),
+                    self.patcher.check(path, route_pattern),
                     self.routes.get(route_pattern),
                 )
             if path == route_pattern.text:
