@@ -10,6 +10,7 @@ class Route:
     """
     app route with path and func
     """
+
     def __init__(self, path: str, func: typing.Callable, methods: typing.List[str]):
         assert path.startswith("/"), "Path must startswith from '/'"
         self.methods = methods
@@ -21,6 +22,7 @@ class Validators(PatchedValidators):
     """
     validator for routes paths
     """
+
     def route(self, value):
         if "/" not in value:
             return value

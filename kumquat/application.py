@@ -162,7 +162,6 @@ class Kumquat:
 
         return decorator
 
-
     def run(self, host: str = "127.0.0.1", port: int = 5000, log_level: str = "info"):
         """
         start application with uvicorn
