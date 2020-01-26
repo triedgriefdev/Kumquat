@@ -17,17 +17,17 @@ async def index(request: Request, response: SimpleResponse):
     return HTMLResponse("<h1>hello</h1>")
 
 
-@app.get("/<param>")
-async def some_param_route(request: Request, response: SimpleResponse):
-    param = request.path_dict["param"]
-    return f"your path now - /{param}", 200
-
-
 @app.get("/<name>/<age>")
 async def some_json_route(request: Request, response: SimpleResponse):
     name = request.path_dict["name"]
     age = request.path_dict["age"]
     return {"user": {"name": name, "age": age}}
+
+
+@app.get("/<param>")
+async def some_param_route(request: Request, response: SimpleResponse):
+    param = request.path_dict["param"]
+    return f"your path now - /{param}", 200
 
 
 app.run()
